@@ -11,15 +11,15 @@
    
     
     <nav>
-      <a href="#">What’s New</a>
-      <a href="#">Artists</a>
+      <!-- <a href="#">What’s New</a> -->
+      <!-- <a href="#">Artists</a>
       <a href="#">Artworks</a>
       <a href="#">Viewing Rooms</a>
-      <a href="#">Galleries</a>
+      <a href="#">Galleries</a> -->
     </nav>
 
     <div class="search-box">
-      <input type="text" placeholder="Search by artist, gallery, style, theme, tag, etc.">
+      <input type="text" id="searchBar" placeholder="Search by artist, gallery, style, theme, tag, etc.">
     </div>
 
     <div>
@@ -31,13 +31,13 @@
   <section class="hero">
     <h1 class="art">Art</h1>
     <h1 class="heading">The Most Influential Artists of 2024</h1>
-    <h2 class="heading">Artvibe Creativity</h2>
+    <h2 class="heading">ArtVibe Creativity</h2>
     <div class="link">
     <div class3="time"><p>Jun 23, 2025 12:32PM</p></div>
     <button class="btn btn-signup">Scroll for more</button>
   </section>
 
-  <div class="Main"><img src="./asset/main pic.jpg" style="padding-left: 150px;height:600px; object-fit: cover; ">
+  <!-- <div class="Main"><img src="./asset/main pic.jpg" style="padding-left: 150px;height:600px; object-fit: cover; ">
                     <p>Jeffrey Gibson, installation view of WE HOLD THESE TRUTHS 
                       TO BE SELF-EVIDENT, 2024 in “the space in which to place me”
                        at the U.S. pavilion at the 60th International Art Exhibition - 
@@ -61,7 +61,7 @@ develop in importance, art world power is shifting globally, with Middle
  in 2024, artists were often vocal activists for the causes that mattered 
  to them. Influence, for artists this year, was measured not just by what 
  they did within the walls of the gallery, but the collaborations, statements, 
- and impact they made in the outside world. </p>
+ and impact they made in the outside world. </p> -->
 
 <!-- Artist cards -->
     <section class="artists">
@@ -411,6 +411,33 @@ Rather than repair it, Sikander allowed the figure to remain headless—a gestur
         btn.textContent = "Follow";
       }
     });
+  });
+</script>
+
+
+<script>
+  const searchBar = document.getElementById("searchBar");
+
+  searchBar.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {   // when user presses Enter
+      const query = searchBar.value.toLowerCase().trim();
+      const cards = document.querySelectorAll(".artist-card");
+      let found = false;
+
+      cards.forEach(card => {
+        const name = card.querySelector("h3").textContent.toLowerCase();
+        if (name.includes(query)) {
+          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          card.style.outline = "2px solid #6c63ff";   // highlight briefly
+          setTimeout(() => card.style.outline = "none", 2000);
+          found = true;
+        }
+      });
+
+      if (!found) {
+        alert("No artist found with that name.");
+      }
+    }
   });
 </script>
 </body>

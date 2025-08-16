@@ -1,0 +1,41 @@
+<!-- Search bar -->
+<input type="text" id="searchBar">
+
+<!-- Example artist cards -->
+<div class="artist-card" id="shahzia-sikander">
+  <h3>Shahzia Sikander</h3>
+</div>
+
+<div class="artist-card" id="julie-mehretu">
+  <h3>Julie Mehretu</h3>
+</div>
+
+<div class="artist-card" id="shirin-neshat">
+  <h3>Shirin Neshat</h3>
+</div>
+
+<script>
+  const searchBar = document.getElementById("searchBar");
+
+  searchBar.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {   // when user presses Enter
+      const query = searchBar.value.toLowerCase().trim();
+      const cards = document.querySelectorAll(".artist-card");
+      let found = false;
+
+      cards.forEach(card => {
+        const name = card.querySelector("h3").textContent.toLowerCase();
+        if (name.includes(query)) {
+          card.scrollIntoView({ behavior: "smooth", block: "center" });
+          card.style.outline = "2px solid #6c63ff";   // highlight briefly
+          setTimeout(() => card.style.outline = "none", 2000);
+          found = true;
+        }
+      });
+
+      if (!found) {
+        alert("No artist found with that name.");
+      }
+    }
+  });
+</script>
